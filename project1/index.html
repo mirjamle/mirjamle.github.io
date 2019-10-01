@@ -1,10 +1,178 @@
-<!doctype html>
-<html lang="nl" prefix="og: http://ogp.me/ns#">
-<head>
-    <meta charset="utf-8">
-    <meta id="viewportsetting" name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <p style="font-size: 30px">Dit is het eerste mooie project</p>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <title>AMC – VUmc focus area 'Reproduction &#38; Development'</title>
+        <meta charset="utf-8">
+        <meta name="author" content="Dutch Data Design - http://dutchdatadesign.nl - Mirjam Leunissen, 25 April 2014">
+
+        <link rel="stylesheet" href="css/reset.css" type="text/css" />
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="css/customstyle.css" type="text/css" />
+        <link rel="stylesheet" href="css/AMCtheme/jquery-ui-1.10.4.custom.min.css" type="text/css" />
+ 
+        <script src="js/jquery-1.10.2.min.js" type="text/javascript"></script>
+        <script src="js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
+        <script src="js/d3.v3.min.js" type="text/javascript"></script>
+        <script src="js/Tooltip.js"></script>
+    </head>
+
+    <body>
+
+        <div id="pagecontainer">
+            <div id="presentationcontainer">
+      
+            <div id="title"><p>AMC – VUmc focus area 'Reproduction &#38; Development'</p></div>
+            <div id="introcontainer" class="pull-left">
+                <p>'Reproduction &#38; Development' (R&#38;D) is one of the eight research focus areas of the AMC/VUmc. This data visualisation illustrates all senior (co-promotors and promotors) and junior researchers (PhD students) that are active in R&#38;D.</br>
+                The <b>Network</b> view shows all (co-)promotors. These are connected if they share one or more PhD students and specific (co-)promotors can be found by entering their name in the appropriate field. Within R&#38;D there are twelve 'Research themes' which can be visualised independently by selecting them in the pull down menu.</br>
+                The <b>Research Theme</b> view shows all (co-)promotors and PhD students categorised by research theme.</br>
+                In all views color coding can be applied to visualise the 'Affiliation' or 'Research Type'. Place the cursor over the objects in the network for more details or drag objects to rearrange the network.</br>
+                For questions or comments please contact dr. Cornelieke van de Beek: c.vandebeek&#64;amc.nl.
+                </p>
+                <p style="font-size: 12px; color:#c2b1d0"> This visualization has been optimized for Internet Explorer v9+ and other modern browsers</p>
+            </div>
+            
+            <div id="controlscontainer" class="pull-left">
+      
+                <div id="chooselayout" class="pull-left control">
+                    <h4 style = "margin-bottom: 8px">Choose view:</h4>
+                    <a id="PInetwork" class="active">Network</a>
+                    <a id="researchAreaGrouped">Research Themes</a>
+                </div>
+                
+                <div id="choosecolors" class="pull-left control">
+                    <h4 style = "margin-bottom: 8px">Color by:</h4>
+                    <a id="affiliation" class="active">Affiliation</a>
+                    <a id="researchtype">Research Type</a>
+                </div>
+ 
+                <div id="selectresearch" class="pull-left control">
+                    <h4 style = "margin-bottom: 3px">Select research theme:</h4>
+                    <select id="selectresearch-list">
+                        <option value=0>- none selected -</option>
+                        <option value=9>Sex</option>
+                        <option value=6>Testis</option>
+                        <option value=4>Ovary</option>
+                        <option value=7>Uterus</option>
+                        <option value=8>Embryo</option>
+                        <option value=2>Early pregnancy</option>
+                        <option value=10>Prenatal testing</option>
+                        <option value=5>Pregnancy</option>
+                        <option value=11>Pregnancy complications</option>
+                        <option value=12>Preterm birth</option>
+                        <option value=13>Neonate</option>
+                        <option value=14>Follow-up</option>
+                    </select>
+                </div>
+                
+                <div id="selectPI" class="pull-left control">
+                    <h4 style = "margin-bottom: 3px">Find (co-)promotor:</h4>
+                    <div class="pull-left ui-widget">
+                        <input id="PIlist" class="PIselector">
+                    </div>
+                </div>
+                 
+            </div>
+
+            <div id="viscanvas" class="pull-left"></div>
+            
+            <div class="footer">
+                <div id="date" class="pull-left" style="cursor:default"></div>
+                <p class="pull-right" style="margin-right: 580px;">2014 © <a id="authorlink" href="http://dutchdatadesign.nl" target="_blank">Dutch Data Design</a></p>
+            </div>
+        </div>
+        </div>
+
+    </body>  
+    
+    <script type="text/javascript" src="js/vis.js"></script>
+    
+    <script type='text/javascript'>
+        
+        function activate (group, link) {
+            d3.selectAll("#" + group + " a").classed("active", false);
+            return d3.select("#" + group + " #" + link).classed("active", true);
+        };
+
+        $(function() {
+          
+          // display update date from date file
+          $.get("data/updatedatum.txt", function(date){
+                $("#date").html(date);
+                }, 'text');
+        
+          // load data and start visualization
+          var nodesData = null,
+                PIList = [];
+          
+            d3.csv("data/AMCnodes.txt", function(data) {
+                 
+                   nodesData = data.map(function(d) { return {
+                                PersID: +d.PersoonsID,
+                                PersName: d.PersoonsAchternaam,
+                                PersInitials: d.PersoonsVoornaam,
+                                PI: +d.PI,
+                                Location: d.locatie.split(/,/).map(Number),
+                                ResAreasPhD: d.ThemasArray.split(/,/).map(Number),
+                                ResAreasPI: d.ThemasDeducedFromPromovendiCalc.split(/,/).map(Number),
+                                ResTypesPhD: d.OnderzoekstypeArray.split(/,/).map(Number),
+                                ResTypesPI: d.TypesDeducedFromPromovendiCalc.split(/,/).map(Number),
+                                PhDids: d.PromovendiArray.split(/,/).map(Number),
+                                PhDNo: +d.PromovendiCount,
+                                Department: d.Department,
+                                Email: d.EmailAddress,
+                                Promotors: d.PromotoresArray.split(/,/).map(Number),
+                                CoPromotors: d.CopromotoresArray.split(/,/).map(Number),
+                    }; });
+                   
+                   var index = 0;
+                   nodesData.forEach(function(n) {
+                        if (n.PI == 1) {
+                            PIList[index] = {"label": n.PersName + " " + n.PersInitials, "value": n.PersID};
+                            index += 1;
+                        }
+                   });
+                   
+                   $("#PIlist").autocomplete({
+                                    minLength: 1,
+                                    source: PIList,
+                                    select: function (event,ui) {
+                                            PIName = ui.item.label;
+                                            $("#PIlist").val(PIName);
+                                            var ID = ui.item.value;
+                                            UILib.updatePISearch(ID);
+                                            return false;
+                                            }
+                                });
+                   
+                   $("#PIlist").on("click", function() {
+                                $(this).val("");
+                                UILib.updatePISearch(0);
+                    });
+
+                   return Network.initialize(nodesData);
+            });
+     
+// UI functions
+          
+          d3.selectAll("#chooselayout a").on("click", function(d) {
+                                             var newLayout = d3.select(this).attr("id");
+                                             activate("chooselayout", newLayout);
+                                             return UILib.toggleLayout(newLayout);
+                                             });
+          
+          d3.selectAll("#choosecolors a").on("click", function(d) {
+                                             var newColorFilter = d3.select(this).attr("id");
+                                             activate("choosecolors", newColorFilter);
+                                             return UILib.toggleColorFilter(newColorFilter);
+                                             });
+          
+           $("#selectresearch-list").on("change", function(e) {
+                                       var selectResearch = $(this).val();
+                                       return UILib.updateResearchSelection(selectResearch);
+                                       });
+        });
+        
+    </script>
 </html>

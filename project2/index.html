@@ -2,9 +2,67 @@
 <html lang="nl" prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset="utf-8">
-    <meta id="viewportsetting" name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Mirjam Leunissen, Dutch Data Design, 2019">
+    <link rel="stylesheet" href="css/style.css">
+    <title>NVOG Scientific Report</title>
+<!--< http://dutchdatadesign.nl/ > -->
 </head>
 <body>
-    <p style="font-size: 30px">Dit is het tweede mooie project</p>
+<div id="cover"><span>Een momentje...</span></div>
+<div id="pagecontainer">
+    <div id="header" class="clearfix">
+        <div id="textcontainer" class="pull-left">
+            <p id="organization"><span>Dutch Society of</span> Obstetrics and Gynaecology</p>
+            <p id="title">Scientific Report 2002 — 2016</p>
+            <p id="byline">All publications of the period 2002 — 2016 sorted by research field.<br> Publications from the most recent years 2015/16 appear darker.<br> Use the sort buttons to view the articles that are cited most often.</p>
+            <div id="slidercontainer" class="inactive">
+                <span id="slidertext">Year of Publication</span>
+                <div id="slider"></div>
+            </div> 
+            <div id="filters" class="pull-right inactive">
+                <p id="rankbutton">top cited articles</p>
+                <p id="clusterbutton">all articles</p>
+                <div id="selectAuthor">
+                    <div class="autocomplete">
+                        <input id="Authorlist" class="Authorselector" type="text" name="author" placeholder="FIND AUTHOR">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img class="pull-right" src="img/logo.png">
+        <div id="tabselect">
+            <div class="tabbutton selected" id="tab1">Citations</div>
+            <div class="tabbutton" id="tab2">Article Impact</div>
+            <div class="tabbutton" id="tab3">Field Impact</div>
+            <div class="tabbutton" id="tab4"><a href="networkviz/index.html">Co-Authorship</a></div>
+            <div class="tabbutton" id="tab5">Publications</div>
+        </div> <!-- tabselect -->
+    </div>
+        
+    <div id="chartcontainer" class="clearfix"> 
+        <div id="chartsvg"></div>
+        <div id="maincanvas"></div> 
+        <div id="hiddencanvas"></div> 
+        <div id="chartlabels"></div>
+        <div id="dragbar"></div>
+    </div>
+             
+    <div id="pulledinfo"><p id="pointerinstruction">hover over the publication dots for more details</p></div>
+
+    <div id="publicationscontainer">
+        <div id="pubsfield1" class="publist"></div>
+        <div id="pubsfield2" class="publist"></div>
+        <div id="pubsfield3" class="publist"></div>
+        <div id="pubsfield4" class="publist"></div>
+        <div id="pubsfield5" class="publist"></div>
+    </div>    
+        
+    <div id="credits">data:<span>CWTS</span>visualization:<span><a href="http://dutchdatadesign.nl" target="_blank">Dutch Data Design</a></span></div>
+    
+</div> <!-- end pagecontainer -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js" integrity="sha256-45YA33UQCDcJsntBst2bhka2t/LBNHP7RNvpllHPkQ0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js" integrity="sha256-OI3N9zCKabDov2rZFzl8lJUXCcP7EmsGcGoP6DMXQCo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js" integrity="sha256-eOUokb/RjDw7kS+vDwbatNrLN8BIvvEhlLM5yogcDIo=" crossorigin="anonymous"></script>
+<script src="bundle.js"></script>
 </body>
 </html>

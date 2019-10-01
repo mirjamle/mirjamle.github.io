@@ -1,0 +1,53 @@
+{
+  "type": "network",
+  "version": "1.0",
+  "data": "data.json",
+  "logo": {
+    "text": "Dutch Data Design",
+    "file": "",
+    "link": ""
+  },
+  "text": {
+    "title": "NVOG Co-Authorship network",
+    "more": "",
+    "intro": ""
+  },
+  "legend": {
+    "edgeLabel": "Co-authorships",
+    "colorLabel": "",
+    "nodeLabel": "Institution"
+  },
+  "features": {
+    "search": true,
+    "groupSelectorAttribute": false,
+    "hoverBehavior": "dim"
+  },
+  "informationPanel": {
+    "imageAttribute": false,
+    "groupByEdgeDirection": false
+  },
+  "sigma": {
+    "graphProperties": {
+      "minEdgeSize": 0.3,
+      "maxNodeSize": 12,
+      "maxEdgeSize": 1,
+      "minNodeSize": 3
+    },
+    "drawingProperties": {
+      "labelThreshold": 9,
+      "hoverFontStyle": "bold",
+      "defaultEdgeType": "curve",
+      "defaultLabelColor": "#555",
+      "defaultLabelHoverColor": "#eff4df",
+      "defaultLabelSize": 15,
+      "activeFontStyle": "bold",
+      "fontStyle": "normal",
+      "defaultHoverLabelBGColor": "#1b4e71",
+      "defaultLabelBGColor": "#fff"
+    },
+    "mouseProperties": {
+      "minRatio": 0.75,
+      "maxRatio": 20
+    }
+  }
+}

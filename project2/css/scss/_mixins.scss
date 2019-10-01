@@ -1,0 +1,5 @@
+@mixin hover {
+    html.has-mouse &:hover {
+        @content;
+    }
+}

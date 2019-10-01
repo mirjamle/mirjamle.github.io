@@ -1,0 +1,178 @@
+body {
+    font-family: Arial, sans-serif;
+    color: #555;
+    background: #fff;
+}
+
+p {
+    font-size: 14px;
+}
+
+.footer p {
+    color: #ccc;
+    font-size: 13px;
+}
+
+#date {padding-left: 30px;}
+#authorlink { color: #eee; }
+#authorlink:hover { color: #e58e1c; }
+
+.pull-right {
+    float: right;
+}
+
+.pull-left {
+    float: left;
+}
+
+.control {
+    padding-left: 10px;
+}
+
+.control a {
+    color: #785791;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 15px 5px 15px;
+    background: #E2E2E2;
+    -moz-border-radius:3px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 3px;
+    text-decoration: none;
+}
+
+.control a:hover {
+    color: #eee;
+    background: #683899;
+}
+
+.control a.active {
+    color: #eee;
+    background: #8967a3;
+}
+
+.tooltip {
+    position: absolute;
+    top: 0px;
+    left:0px;
+    -moz-border-radius:3px;
+    border-radius: 3px;
+    background: #fcfbfd;
+    opacity: 0.9;
+    padding: 5px 10px;
+    font-size: 13px;
+    z-index: 1000;
+}
+
+.tooltip p.main {
+    font-size: 12px;
+    font-weight: bold;
+    color: #444;
+    text-align: left;
+    padding:0;
+    margin:0;
+}
+
+.tooltip p.subinfo {
+    font-size: 12px;
+    color: #666;
+    text-align: left;
+    padding:0;
+    margin:0;
+}
+
+#vis-tooltip {
+    border: 2px solid #f1c387;
+}
+
+#vis-tooltip2 {
+    border: 2px solid #aaa;
+}
+
+#pagecontainer {
+    width: 1010px;
+    height: 1105px;
+    padding: 10px 0px 0px 10px;
+}
+
+#presentationcontainer {
+    width: 980px;
+    height: 1070px;
+    -moz-border-radius:10px;
+    border-radius: 10px;
+    border: 6px solid #8967a3;
+    padding: 10px 10px 0px 10px;
+    background: #8967a3;
+}
+
+#title {
+    height: 50px;
+    padding: 15px 0px 0px 20px;
+}
+
+#title p {
+    font-size: 28px;
+    font-weight: bold;
+    color: #f6f6f6;
+}
+
+#introcontainer {
+    width: 944px;
+    height: 210px;
+    padding: 15px 18px 0px 18px;
+    background: #ebe6f0;
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    color: #785791;
+    margin-bottom: -10px;
+}
+
+#controlscontainer {
+    width: 970px;
+    height: 70px;
+    padding-top:20px;
+    padding-left:10px;
+    background: #fff;
+}
+
+#viscanvas {
+    -moz-border-radius:5px;
+    border-radius: 5px;
+    margin-bottom: 7px;
+    background: #fff;
+    margin-top: -10px;
+}
+
+#chooselayout {
+    height: 50px;
+}
+
+#choosecolors {
+    height: 50px;
+    margin-left: 20px;
+}
+
+#selectresearch {
+    height: 50px;
+    margin-left: 20px;
+}
+
+#selectresearch-list {
+    color: #785791;
+    width: 180px;
+}
+
+.PIselector:focus {
+    box-shadow: none;
+    border: 2px solid #f1c387;
+}
+
+#selectPI {
+    height: 50px;
+    margin-left: 25px;
+}
+
+#selectPI-list {
+    width: 180px;
+}

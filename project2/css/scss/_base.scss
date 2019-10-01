@@ -1,0 +1,512 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    background: #eff4df;
+    color: #111; 
+    font-family: "Trebuchet MS", "Lucida Grande", Tahoma, Verdana, sans-serif;
+    font-size: 16px;
+    cursor: default;
+}
+
+#cover {
+    background: #eff4df;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200vh;
+    z-index: 10000;
+    
+    span {
+        width: 100%;
+        text-align: center;
+        color: #111;
+        font-family: "Trebuchet MS", "Lucida Grande", Tahoma, Verdana, sans-serif;
+        font-size: 22px;
+        position: absolute;
+        top: 200px;
+    }
+}
+
+.pull-right {
+    float: right;
+}
+
+.pull-left {
+    float: left;
+}
+
+.clearfix:after{
+    content: ".";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+::placeholder {
+    color: #eff4df;
+}
+
+.autocomplete {
+    position: relative;
+    margin-top: 5px;
+    
+    input {
+        border-radius: 0;
+        width: 190px;
+        background: #666;
+        color: #eff4df;
+        font-size: 0.8em;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 5px 0px 4px 0px;
+        opacity: 0.85;
+        cursor: text;
+        outline: none;
+        border: none;
+    }
+    
+    input:focus {
+        outline: none;
+        border: none;
+    }
+    
+    input[type=text] {
+        background: #666;
+        color: #eff4df;
+        width: 100%;
+        outline: none;
+        border: none;
+    }
+}
+
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #666;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+.autocomplete-items div {
+    background-color: #f8f8f8; 
+    color: #666;
+    font-size: 0.8em;
+    padding: 0.4em 0.5em 0.3em 0.5em;
+    cursor: pointer;
+}
+
+.autocomplete-items div:hover {
+    background-color: #ccc; 
+    color: #222;
+    font-weight: bold;
+}
+
+.autocomplete-active {
+    background-color: #ccc!important; 
+    color: #ffffff; 
+}
+
+svg {
+  display: block;
+  margin: auto;
+}
+
+.inactive {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.invisible {
+    display: none;
+}
+
+#pagecontainer {
+    width: 960px;
+    margin: 0 auto;
+    padding-top: 10px;
+        
+    #header {
+        width: 100%;
+        padding-left: 58px;
+        margin-bottom: 30px;
+        position: relative;
+        
+        img { 
+            width: 90px;
+            position: absolute;
+            top: 10px;
+            right: 245px;
+            opacity: 0.4;
+        }
+        
+        #tabselect {
+            position: absolute;
+            top: 22px;
+            right: -5px;
+            
+            .tabbutton {
+                text-align: center;
+                width: 140px;
+                margin: 0 2px 5px 0;
+                padding: 8px 0px;
+                cursor: pointer;
+                font-size: 0.95em;
+                color: #666;
+                background: #ccc;
+                border: 2px solid #7abf6e;
+                opacity: 0.7;
+            }
+            
+            .tabbutton:hover {
+                opacity: 1;
+            }
+            
+            a {
+                color: #666;
+                text-decoration: none;
+                outline: none;
+                border: none;
+            }   
+            
+            a:focus, a:active {
+                outline: none;
+                border: none;
+            }
+                  
+            .selected {
+                border: 2px solid rgb(0,121,193);
+            }
+            
+        }
+         
+        #textcontainer {
+            width: 77%;
+            height: 190px;
+        
+            #organization {
+                margin-top: 10px;
+                margin-bottom: 5px;
+                text-transform: uppercase;
+                color: rgb(115,193,103);
+                opacity: 0.85;
+            
+                span {
+                    color: rgb(0,121,193);
+                }
+            
+                #abbrev {
+                    color: #666;   
+                    text-transform: lowercase;
+                    font-size: 1.25em;
+                    opacity: 0.3;
+                }
+            }
+        
+            #title {
+                font-size: 2.07em;
+            }
+        
+            #byline {
+                margin-top: 0.5em;
+            }
+            
+            #slidercontainer {
+                margin: 20px 20px 0px -50px;
+                font-family: "Trebuchet MS", "Lucida Grande", Tahoma, Verdana, sans-serif!important;
+            
+                #slidertext {
+                    margin-left: 50px;
+                    color: #222;
+                    font-size: 1.1em;
+                    font-variant: small-caps;
+                    opacity: 0.8;
+                    
+                    span {
+                        opacity: 0.5;
+                    }
+                }
+             
+                #slider {
+                    width: 70%;
+                } 
+                
+                .track {
+                    stroke-width: 7px;
+                    stroke: #111;
+                }
+                
+                .track-overlay {
+                    pointer-events: stroke;
+                    stroke-width: 100px;
+                    stroke: transparent;
+                    stroke-linecap: square;
+                    cursor: pointer;
+                }
+
+                .handle {
+                    fill: #000;
+                    cursor: pointer;
+                }
+            
+                .handle:hover {
+                    fill: #0079C1;
+                }
+            
+                .handletxt {
+                    font-size: 1.1em;
+                    font-family: "Trebuchet MS", "Lucida Grande", Tahoma, Verdana, sans-serif;
+                    font-weight: bold;
+                    fill: #000;
+                }
+            }       
+        
+            #filters { 
+                margin-top: -60px;
+                
+                #rankbutton, #clusterbutton {
+                    background: #666;   
+                    opacity: 0.85;
+                    color: #eff4df;
+                    font-size: 0.8em;
+                    text-transform: uppercase;
+                    width: 190px;
+                    text-align: center;
+                    padding: 5px 0px 4px 0px;
+                    cursor: pointer;
+                }
+            
+                #rankbutton:hover {
+                    opacity: 1;
+                }
+            
+                #clusterbutton:hover {
+                    opacity: 1;
+                }
+            
+                #selectAuthor {
+                   
+                }
+            }
+        }
+    }
+    
+    #chartcontainer {  
+        position: relative;
+        margin-top: 50px;
+        
+        #maincanvas {
+            position: absolute;
+            z-index: 10;
+        }
+            
+        #hiddencanvas {
+            position: absolute;
+            z-index: 11;
+            display: none;
+        }
+        
+        #dragbar {
+            position: absolute;
+            z-index: 20;
+            cursor: pointer;
+        }
+        
+        #chartlabels {
+            position: absolute;
+            z-index: 12;
+            pointer-events: none;
+        }
+        
+        #chartsvg {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+            cursor: default;
+            
+            .legendtext {
+                fill: #777;
+                font-size: 0.85em;
+            }
+          
+            .legendtitle {
+                fill: #666;
+                font-size: 0.9em;
+            }  
+            
+            .legendtext2 {
+                fill: #777;
+                font-size: 0.92em;
+            }
+            
+            .fieldlabel, .ranklabel {
+                 text-shadow: 0 0 4px #eff4df; 
+            }
+            
+            .ranklabel {
+                fill: #222;
+                font-size: 1.1em;
+                font-weight: bold;
+                text-shadow: 0 0 4px #eff4df; 
+            }
+                        
+            .axislabel {
+                fill: #333;
+                font-size: 1.1em;
+                font-variant: small-caps;
+            }
+            
+            .instruction {
+                fill: #555;
+                font-size: 0.8em;
+                opacity: 0.5;
+            }
+            
+            .axis {
+                line {
+                    fill: none;
+                    stroke: #303a13;
+                    stroke-width: 2;
+                    shape-rendering: crispEdges; 
+                    opacity: 0.4;
+                }
+                
+                path {
+                    fill: none;
+                    stroke: none;
+                } 
+                
+                text {
+                    // font-variant: small-caps;
+                    font-size: 1.4em;
+                    text-shadow: 0 0 4px #eff4df; 
+                    fill: #333;
+                    opacity: 0.7;
+                }
+            }
+            
+            .yaxis2 {
+                pointer-events: none;
+                cursor: pointer;
+            }
+        }
+    }
+      
+    #pulledinfo {
+        width: 960px;
+        padding: 0 70px 0 70px;
+        position: fixed;
+        bottom: 8px;
+        text-align: center;
+        text-shadow: 0 0 4px #eff4df; 
+        z-index: 1000;
+        
+        #pointerinstruction {
+            color: #333;
+            font-size: 1.3em;
+            font-variant: small-caps;
+        }
+        
+        .fieldtitle {
+            font-size: 1.15em;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 0.2em;
+        }
+        
+        .fieldcount {
+            font-size: 1.1em;
+        }
+    }
+    
+    #publicationscontainer {
+        width: 700px;
+        margin-left: 58px;
+        margin-top: -70px;
+        
+        hr {
+            border-top: 2px solid #111;
+            margin-top: 0.5em;
+            margin-bottom: 1em;
+        }
+        
+        .journal {
+            margin-top: 0.2em;
+        }
+        
+        .doi {
+            font-size: 0.8em;
+            font-style: italic;
+            margin-top: 0.2em;
+            margin-bottom: 1em;
+        }
+    }
+    
+    .fieldheader {
+        font-size: 1.5em;
+        margin-top: 3em;
+    }
+    
+    .yearheader {
+        font-size: 1.3em;
+        margin-bottom: 0.5em;
+        margin-top: 1em;
+    }
+    
+    .pubtitle {
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+        
+    .author {
+        font-size: 0.8em;
+        margin-top: 0.3em;
+    }
+        
+    .journal {
+        font-size: 0.8em;
+        font-weight: bold;
+        font-style: italic;
+        margin-top: 0.7em;
+    }
+    
+    #credits {
+        position: fixed;
+        bottom: 160px;
+        left: -100px;
+        color: #999;
+        opacity: 0.6;
+        font-size: 0.9em;
+        font-variant: small-caps;
+        font-weight: 100;
+        transform: rotate(-90deg);
+        
+        span {
+            margin-left: 5px;
+            margin-right: 15px;
+            font-weight: normal;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #999;
+            font-weight: bold;
+        }
+    
+        a:hover {
+            color: #8a3078;
+        }
+    } 
+}
